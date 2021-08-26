@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0; }
+  
+html {
+    font-size: 62.5%; }
+  
+body {
+    background-color: #f1e8e3;
+    font-size: 1.6rem; 
+}
+
+.header {
+    background-color: #6388ba;
+}
+
+.menu {
+    background-color: #6388ba;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 120px;
+    margin: auto;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+}
+
+
+.menu img {
+    margin: auto;
+    width: 10%;
+}
+
+.menu a:hover {
+    color: #69aa83;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    background-color: #6388ba;
+}
+
+.footer {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+}
+
+.copy {
+    background-color: #7facea;
+    margin: auto;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.copy p {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    padding: 1%;
+    font-size: 1.8rem;
+}
+
+.rodapeEnd {
+    width: 90%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 1100px;
+}
+
+.rodapeEnd p {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    width: 120%;
+    padding: 5%;
+    font-size: 2.0rem;
+}
+
+.rodapeRede {
+    margin-top: 3%;
+    margin-left: 15%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 20%;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.rodapeRede a {
+    width: 13%;
+    margin-left: 6%;
+    margin-right: 5%;
+}
+
+.rodapeRede img {
+    width: 100%;
+    height: auto;
+}
+
+.form {
+    margin-bottom: 3vw;
+    width: 100%;
+    height: auto;
+    display: block
+}
+
+.form input,
+.form button,
+.form select {
+    margin-left: 33.8vw;
+    width: 30vw;
+    margin-top: 1vw;
+    padding: 0.85vw;
+    border-radius: 15px;
+    border: 1px solid #999;
+    display: block;
+}
+
+.form button {
+    border: 1px solid #7facea !important;
+    background-color: #7facea;
+    margin-bottom: 1vw;
+    color: white;
+    font-weight: bold;
+}
+
+.form button:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border: 1px solid black;
+}
+
+h3 {
+    color: #6388ba;
+    text-align: center;
+    margin-top: 1vw;
+}
+
+p {
+    text-align: center;
+    margin-top: 1vw;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.userimg {
+    width: 20vw;
+    height: auto;
+    margin-left: 38.8vw;
+}
+
+.delete {
+    width: 90vw;
+    border-radius: 15px;
+    padding: 0.85vw;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+}
+.delete:hover {
+    text-decoration: none;
+    color: white;
+}

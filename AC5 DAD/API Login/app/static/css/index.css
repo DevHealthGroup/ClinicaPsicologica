@@ -1,0 +1,59 @@
+body {
+    background-color: black;
+} a, p, h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.itens {
+    margin-top: 1vw;
+    width: 100%;
+} .itens img {
+    margin-left: 46.5vw;
+    width: 5vw;
+} .itens p, h3 {
+    text-align: center;
+}
+
+
+.form {
+    height: auto;
+    width: 100%;
+} .form input {
+    color: white;
+    margin-bottom: 2vw;
+    margin-left: 36.5vw;
+    border-radius: 5px;
+    height: 4.5vw;
+    padding-left: 1vw;
+    width: 25vw;
+    border: 1px solid rgb(70, 70, 70);
+    background-color: black;
+    display: block;
+} .form button {
+    margin-left: 36.5vw;
+    color: rgb(158, 158, 158);
+    font-weight: bold;
+    border-radius: 30px;
+    border: 0px;
+    height: 3.5vw;
+    width: 25vw;
+    background-color: #006a94;
+} .form button:hover {
+    color: white;
+    background-color: #00acee;
+}
+
+
+
+.others {
+    margin-top: 2vw;
+    width: 100%;
+} .others p {
+    text-align: center;
+} .others a {
+    color: #00acee;
+    text-decoration: none;
+} .others a:hover {
+    text-decoration: underline;
+}
