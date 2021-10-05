@@ -1,0 +1,2 @@
+com/clinica/devhealthgroup/BuildConfig.java
+ com.clinica.devhealthgroup.BuildConfig
