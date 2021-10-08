@@ -1,7 +1,7 @@
 # Aplicação do projeto
 
 
--- Ultima atualização 07/10/2021
+<i>Ultima atualização 07/10/2021</i>
 
 A fazer:
 
