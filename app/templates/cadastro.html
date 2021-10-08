@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cadastro.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.ico')}}" type="image/x-icon">
+    <title>Cadastro | Carolina Ramos Bertolino</title>
+</head>
+
+<body>
+
+    <header class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-4 col-sm-3 col-lg-2 col-xl-1">
+                        <img src="{{url_for('static', filename='imgs/logo.png')}}" alt="Carolina Ramos Bertolino Logo" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h3>{{ erro }}</h3>
+                <h3>CADASTRE-SE</h3>
+            </div>
+
+            <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
+                <div class="form">
+                    <div class="row justify-content-center">
+                        <form action="/cadastro" method="POST" class="col-12">
+                            <div class="row justify-content-center">
+                                <div class="col-12 input">
+                                    <label for="nome">Nome <span style="color: red;">*</span></label>
+                                    <input type="text" name="nome" autocomplete="off" required>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="doc">Documento <span style="color: red;">*</span></label>
+                                    <input type="number" name="doc" autocomplete="off" required>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="sexo">Sexo <span style="color: red;">*</span></label>
+                                    <select name="sexo">
+                                        <option disabled selected></option>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="outro">Outro</option>
+                                        <option value="none">Prefiro não informar</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="nasc">Data de Nascimento <span style="color: red;">*</span></label>
+                                    <input type="date" name="nasc">
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="cep">CEP <span style="color: red;">*</span></label>
+                                    <input type="number" name="cep" autocomplete="off" required>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="complemento">Complemento</label>
+                                    <input type="text" name="complemento" autocomplete="off">
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="telefone">Telefone <span style="color: red;">*</span></label>
+                                    <input type="number" name="telefone" autocomplete="off" required>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="email">Email <span style="color: red;">*</span></label>
+                                    <input type="email" name="email" autocomplete="off" required>
+                                </div>
+                                <div class="col-12 input">
+                                    <label for="senha">Senha <span style="color: red;">*</span></label>
+                                    <input type="password" name="senha" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit">CADASTRAR</button>
+                                    <p class="text-center span">Os campos marcados com <span style="color: red;">*</span> são obrigatórios</p>
+                                    <p class="text-center"><a href="/">Voltar</a></p>
+                                </div>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-4">
+                <p>Rua Coronel Agenor de Camargo, 81<br> 
+                    Centro - Santo André, SP<br> 
+                    (11) 98492-0089<br>
+                    example@example.com.br
+                </p>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex">
+                        <a href="https://www.f.com/" target="_blank">
+                            <img src="{{url_for('static', filename='imgs/facebooklogo.png')}}" alt="facebook logo" class="img-fluid">
+                        </a>
+                        <a href="https://www.i.com" target="_blank">
+                            <img src="{{url_for('static', filename='imgs/instagramlogo.png')}}" alt="instagram logo" class="img-fluid">
+                        </a>
+                        <a href="https://www.linkedin.com/in/carolina-bertolino-68aa373b/" target="_blank">
+                            <img src="{{url_for('static', filename='imgs/linkedin.png')}}" alt="linkedin logo" class="img-fluid">
+                        </a>
+                        <a href="https://wa.me/+5511984920089" target="_blank">
+                            <img src="{{url_for('static', filename='imgs/whatsapplogo.png')}}" alt="whatsapp logo" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <p><small>Copyright &copy; 2021 Carolina Ramos Bertolino</small></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
