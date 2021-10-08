@@ -5,6 +5,6 @@
 
 A fazer:
 
-Criar função 'PAGAMENTOS'
-Finalizar detalhes nos inputs de cadastro/editar cadastro/consultas
+Criar função 'PAGAMENTOS'<br>
+Finalizar detalhes nos inputs de cadastro/editar cadastro/consultas<br>
 Adicionar imagem do usuário
