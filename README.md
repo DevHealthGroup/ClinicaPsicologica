@@ -3,8 +3,8 @@
 
 <i>Ultima atualização 07/10/2021</i>
 
-A fazer:
+<b>A fazer</b>:
 
-Criar função 'PAGAMENTOS'<br>
-Finalizar detalhes nos inputs de cadastro/editar cadastro/consultas<br>
-Adicionar imagem do usuário
+1. Criar função 'PAGAMENTOS'<br>
+2. Finalizar detalhes nos inputs de cadastro/editar cadastro/consultas<br>
+3. Adicionar imagem do usuário
