@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cadastro"
+            android:icon="@drawable/ic_disciplina_black"
+            android:title="Cadastro"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_consultas"
+            android:title="Consultas"
+            android:icon="@drawable/ic_forum_black" />
+        <item
+            android:id="@+id/nav_pagamentos"
+            android:title="Pagamentos"
+            android:icon="@drawable/ic_chat_black" />
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_forum_black"
+            android:title="Sair" />
+
+    </group>
+</menu>
