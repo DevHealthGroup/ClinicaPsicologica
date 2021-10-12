@@ -1,9 +1,9 @@
-<b>Clinica Psicologica</b>
+<b>Clinica Psicologica</b><br>
 Desenvolvimento de sistema de Gerenciamento para Consultórios Particulares
 
 <hr>
 
-<b>Branchs</b>
+<b>Branchs</b><br>
 • Master - Documentação do Projeto<br>
 • AC02 - AC de Mobile 2<br>
 • AC03 - AC de Mobile 3<br>
@@ -13,7 +13,7 @@ Desenvolvimento de sistema de Gerenciamento para Consultórios Particulares
 
 <hr>
 
-<b>Interantes</b>
+<b>Interantes</b><br>
 • Edevilson Mendes<br>
 • Fábio Monteiro<br>
 • Jéssica Ribeiro<br>
