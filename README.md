@@ -1,7 +1,9 @@
 # ClinicaPsicologica
 Desenvolvimento de sistema de Gerenciamento para Consultórios Particulares
 
-# Branchs
+<hr>
+
+<b> Branchs </b>
 1. Master - Documentação do Projeto
 2. AC02 - AC de Mobile
 3. AC03 - AC de Mobile
