@@ -15,7 +15,7 @@ Desenvolvimento de sistema de Gerenciamento para Consultórios Particulares
 
 <hr>
 
-<b>Interantes</b><br>
+<b>Integrantes</b><br>
 <br>
 • Edevilson Mendes<br>
 • Fábio Monteiro<br>
