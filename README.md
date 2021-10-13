@@ -1,6 +1,6 @@
-<b>Clinica Psicologica</b><br>
+<b>Clinica Psicologica OPE</b><br>
 <br>
-Desenvolvimento de sistema de Gerenciamento para Consultórios Particulares
+Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 
 <hr>
 
