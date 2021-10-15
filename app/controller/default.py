@@ -51,7 +51,6 @@ def cadastro():
         # ACESSA A API VIACEP UTILIZANDO O CEP PASSADO NO CADASTRO
         urlViaCep = f"https://viacep.com.br/ws/{request.form['cep']}/json/"
 
-        # CRIA UMA STRING COM O ENDEREÇO COMPLETO, JUNTANDO TODAS AS INFORMAÇÕES DO VIACEP + COMPLEMENTO
         logradouro = requests.get(urlViaCep).json()['logradouro']
         complemento = request.form['complemento']
         cep = request.form['cep']
@@ -77,7 +76,6 @@ def cadastro():
         # REDIRECIONA PARA A ROTA DE LOGIN
         return redirect(url_for('index'))
 
-
     # RENDERIZA A TELA DE CADASTRO
     return render_template("cadastro.html")
 
@@ -99,6 +97,9 @@ def editarcadastro():
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
     pacienteLog = Paciente.query.get(id)
 
+    # PEGA AS INFORMAÇÕES DE TODOS OS PACIENTEs 
+    pacientes = Paciente.query.all()
+
     # SEPARA A STRING DO ENDEREÇO
     enderecoPaciente = pacienteLog.endereco.split(", ")
 
@@ -108,7 +109,6 @@ def editarcadastro():
         # ACESSA A API VIACEP UTILIZANDO O CEP PASSADO NO FORMULÁRIO
         urlViaCep = f"https://viacep.com.br/ws/{request.form['cep']}/json/"
 
-        # CRIA UMA STRING COM O ENDEREÇO COMPLETO, JUNTANDO TODAS AS INFORMAÇÕES DO VIACEP + COMPLEMENTO
         logradouro = requests.get(urlViaCep).json()['logradouro']
         complemento = request.form['complemento']
         cep = request.form['cep']
@@ -127,11 +127,10 @@ def editarcadastro():
         db.session.commit()
 
         # RENDERIZA A TELA DE EDIÇÃO DE CADASTRO
-        return redirect(url_for("editarcadastro", id = pacienteLog.idPaciente, mensagem = "Cadastro alterado com sucesso!"))
-
+        return redirect(url_for("editarcadastro", id = pacienteLog.idPaciente))
 
     # RENDERIZA A TELA DE EDIÇÃO DE CADASTRO
-    return render_template("editcadastro.html", paciente = pacienteLog, endereco = enderecoPaciente)
+    return render_template("editcadastro.html", paciente = pacienteLog, endereco = enderecoPaciente, pacientes = pacientes)
 
 
 
@@ -158,7 +157,7 @@ def homepage():
 
 
 
-# ROTA DE AGENDAMENTO
+# ROTA DE CONSULTAS
 @app.route("/consultas", methods=['GET', 'POST'])
 def consultas():
 
@@ -213,3 +212,54 @@ def consultas():
 
     # RENDERIZA A TELA DE EDIÇÃO DE CADASTRO
     return render_template("consultas.html", paciente = pacienteLog, consultas = consultas)
+
+
+
+
+
+# ROTA DE PAGAMENTOS
+@app.route("/pagamentos", methods=["GET", "POST"])
+def pagamentos():
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    id = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(id)
+
+    # PEGA OS PAGAMENTOS DO BANCO DE DADOS
+    pagamentos = Pagamento.query.all()
+
+    return render_template("pagamentos.html", paciente = pacienteLog, pagamentos = pagamentos)
+
+
+
+
+# ROTA GERAR PAGAMENTO
+@app.route("/gerar-pagamento/<int:id>", methods=['GET', 'POST'])
+def gerarPagamento(id):
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    idPaciente = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(idPaciente)
+
+    consulta = Consulta.query.get(id)
+    paciente = consulta.paciente
+    paci = Paciente.query.get(paciente)
+
+    novoPagamento = Pagamento(id, paci.idPaciente, 50.00, paci.tipoPlano)
+
+    db.session.add(novoPagamento)
+    db.session.commit()
+
+    return redirect(url_for("consultas", paciente = pacienteLog))

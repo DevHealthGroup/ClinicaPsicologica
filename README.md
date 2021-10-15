@@ -1,10 +1,10 @@
+
 # Aplicação do projeto
 
 
-<i>Ultima atualização 07/10/2021</i>
+<i>Ultima atualização 14/10/2021</i>
 
 <b>A fazer</b>:
 
-1. Criar função 'PAGAMENTOS'<br>
-2. Finalizar detalhes nos inputs de cadastro/editar cadastro/consultas<br>
-3. Adicionar imagem do usuário
+1. Ver horários do agendamento<br>
+2. Ver forma de pagamento<br>

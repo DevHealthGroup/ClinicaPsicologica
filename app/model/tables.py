@@ -52,14 +52,18 @@ class Consulta(db.Model):
 class Pagamento(db.Model):
     __tablename__ = "pagamento"
     idPagamento = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    consulta = db.Column(db.Integer)
     paciente = db.Column(db.Integer)
     valor = db.Column(db.Float)
+    status = db.Column(db.String(30))
     tipoPlano = db.Column(db.Integer)
 
     # CONSTRUTOR DA TABELA PAGAMENTO
-    def __init__(self, paciente, valor, tipoPlano):
+    def __init__(self, paciente, consulta, valor, tipoPlano):
         self.paciente = paciente
+        self.consulta = consulta
         self.valor = valor
+        self.status = 'Pendente'
         self.tipoPlano = tipoPlano
 
 

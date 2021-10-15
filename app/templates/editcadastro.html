@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -31,86 +31,120 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12">
-                <h3>{{ erro }}</h3>
-                <h3>{{ mensagem }}</h3>
-                <h3>EDITAR CADASTRO</h3>
+
+            <div class="col-12 mt-5">
+                {% if paciente.idPaciente == 3 %}
+                    <h3>CADASTRO DOS PACIENTES</h3>
+                {% else %}
+                    <h3>EDITAR CADASTRO</h3>
+                {% endif %}
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
-                <div class="form">
+            {% if paciente.idPaciente == 3 %}
+                <div class="col-11 col-sm-8 col-lg-10">
                     <div class="row justify-content-center">
-                        <form action="/cadastro/editar" method="POST" class="col-12">
-                            <div class="row justify-content-center">
-                                <div class="col-12">
-                                    <div class="row justify-content-center">
-                                        <div class="col-8">
-                                            <img src="{{url_for('static', filename='imgs/avatar.svg')}}" alt="User Icon" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" name="nome" autocomplete="off" required value="{{paciente.nome}}">
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="sexo">Sexo</label>
-                                    <select name="sexo">
-                                        {% if paciente.sexo == 'masculino' %}
-                                            <option value="masculino" selected>Masculino</option>
-                                            <option value="feminino">Feminino</option>
-                                            <option value="outro">Outro</option>
-                                            <option value="none">Prefiro não informar</option>
-                                        {% endif %}
-                                        {% if paciente.sexo == 'feminino' %}
-                                            <option value="masculino">Masculino</option>
-                                            <option value="feminino" selected>Feminino</option>
-                                            <option value="outro">Outro</option>
-                                            <option value="none">Prefiro não informar</option>
-                                        {% endif %}
-                                        {% if paciente.sexo == 'outro' %}
-                                            <option value="masculino">Masculino</option>
-                                            <option value="feminino">Feminino</option>
-                                            <option value="outro" selected>Outro</option>
-                                            <option value="none">Prefiro não informar</option>
-                                        {% endif %}
-                                        {% if paciente.sexo == 'none' %}
-                                            <option value="masculino">Masculino</option>
-                                            <option value="feminino">Feminino</option>
-                                            <option value="outro">Outro</option>
-                                            <option value="none" selected>Prefiro não informar</option>
-                                        {% endif %}
-                                    </select>
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="cep">CEP</label>
-                                    <input type="number" name="cep" autocomplete="off" value="{{endereco[2]}}" required>
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="complemento">Complemento</label>
-                                    <input type="text" name="complemento" autocomplete="off" value="{{endereco[1]}}">
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="telefone">Telefone</label>
-                                    <input type="number" name="telefone" autocomplete="off" value="{{paciente.telefone}}" required>
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" autocomplete="off" value="{{paciente.email}}" required>
-                                </div>
-                                <div class="col-12 input">
-                                    <label for="senha">Senha</label>
-                                    <input type="password" name="senha" value="{{paciente.senha}}" required>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit">Salvar Alterações</button>
-                                    <p class="text-center"><a href="/homepage">Voltar</a></p>
-                                </div>
-                            </div>
-                        </form>
+                        <table class="col-12" cellpadding="5px">
+                            <thead class="col-12">
+                                <tr class="col-12">
+                                    <th class="col-4"><h4>NOME</h4></th>
+                                    <th class="col-4"><h4>DOCUMENTO</h4></th>
+                                    <th class="col-4"><h4>EMAIL</h4></th>
+                                    <th class="col-4"><h4>TELEFONE</h4></th>
+                                    <th class="col-4"><h4>PLANO</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in pacientes: %}
+                                    <tr class="col-12">
+                                        <td class="col-4"><p>{{i.nome}}</p></td>
+                                        <td class="col-4"><p>{{i.doc}}</p></td>
+                                        <td class="col-4"><p>{{i.email}}</p></td>
+                                        <td class="col-4"><p>{{i.telefone}}</p></td>
+                                        <td class="col-4"><p>{{i.tipoPlano}}</p></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
+            {% endif %}
+
+            {% if paciente.idPaciente != 3 %}
+                <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
+                    <div class="form">
+                        <div class="row justify-content-center">
+                            <form action="/cadastro/editar" method="POST" class="col-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-12">
+                                        <div class="row justify-content-center">
+                                            <div class="col-8">
+                                                <img src="{{url_for('static', filename='imgs/avatar.svg')}}" alt="User Icon" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" name="nome" autocomplete="off" required value="{{paciente.nome}}">
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="sexo">Sexo</label>
+                                        <select name="sexo">
+                                            {% if paciente.sexo == 'masculino' %}
+                                                <option value="masculino" selected>Masculino</option>
+                                                <option value="feminino">Feminino</option>
+                                                <option value="outro">Outro</option>
+                                                <option value="none">Prefiro não informar</option>
+                                            {% endif %}
+                                            {% if paciente.sexo == 'feminino' %}
+                                                <option value="masculino">Masculino</option>
+                                                <option value="feminino" selected>Feminino</option>
+                                                <option value="outro">Outro</option>
+                                                <option value="none">Prefiro não informar</option>
+                                            {% endif %}
+                                            {% if paciente.sexo == 'outro' %}
+                                                <option value="masculino">Masculino</option>
+                                                <option value="feminino">Feminino</option>
+                                                <option value="outro" selected>Outro</option>
+                                                <option value="none">Prefiro não informar</option>
+                                            {% endif %}
+                                            {% if paciente.sexo == 'none' %}
+                                                <option value="masculino">Masculino</option>
+                                                <option value="feminino">Feminino</option>
+                                                <option value="outro">Outro</option>
+                                                <option value="none" selected>Prefiro não informar</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="cep">CEP</label>
+                                        <input type="number" name="cep" autocomplete="off" value="{{endereco[2]}}" required>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="complemento">Complemento</label>
+                                        <input type="text" name="complemento" autocomplete="off" value="{{endereco[1]}}">
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="telefone">Telefone</label>
+                                        <input type="number" name="telefone" autocomplete="off" value="{{paciente.telefone}}" required>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" autocomplete="off" value="{{paciente.email}}" required>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="senha">Senha</label>
+                                        <input type="password" name="senha" value="{{paciente.senha}}" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit">Salvar Alterações</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <p class="text-center"><a href="/homepage">Voltar</a></p>
         </div>
     </section>
 

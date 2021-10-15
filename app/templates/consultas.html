@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -31,63 +31,96 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12">
-                <h3>{{ mensagem }}</h3>
-                <h3>AGENDAR CONSULTA</h3>
-            </div>
+            {% if paciente.idPaciente != 3 %}
+                <div class="col-12">
+                    <h3>{{ mensagem }}</h3>
+                    <h3>AGENDAR CONSULTA</h3>
+                </div>
 
-            <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
-                <div class="form">
-                    <div class="row justify-content-center">
-                        <form action="/consultas" method="POST">
-                            <div class="row justify-content-center">
-                                <div class="col-12 input">
-                                    <label for="dia">Dia</label>
-                                    <input type="date" name="dia" id="dia" required>
+                <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
+                    <div class="form">
+                        <div class="row justify-content-center">
+                            <form action="/consultas" method="POST">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 input">
+                                        <label for="dia">Dia</label>
+                                        <input type="date" name="dia" id="dia" required>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="hora">Hora</label>
+                                        <input type="time" name="hora" id="hora" min="08:00" max="18:00" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit">ENVIAR</button>
+                                    </div>
                                 </div>
-                                <div class="col-12 input">
-                                    <label for="hora">Hora</label>
-                                    <input type="time" name="hora" id="hora" min="08:00" max="18:00" required>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit">ENVIAR</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            {% endif %}
 
             <div class="col-12 mt-5">
-                <h3>SUAS CONSULTAS</h3>
+                {% if paciente.idPaciente == 3 %}
+                    <h3>CONSULTAS</h3>
+                {% else %}
+                    <h3>SUAS CONSULTAS</h3>
+                {% endif %}
             </div>
 
-            <div class="col-11 col-sm-8 col-lg-6">
-                <div class="row justify-content-center">
-                    <table class="col-12" cellpadding="5px">
-                        <thead class="col-12">
-                            <tr class="col-12">
-                                <th class="col-4"><h4>STATUS</h4></th>
-                                <th class="col-4"><h4>DATA</h4></th>
-                                <th class="col-4"><h4>HORÁRIO</h4></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in consultas: %}
-                                {% if i.paciente == paciente.idPaciente %}
+            {% if paciente.idPaciente == 3 %}
+                <div class="col-11 col-sm-8 col-lg-6">
+                    <div class="row justify-content-center">
+                        <table class="col-12" cellpadding="5px">
+                            <thead class="col-12">
+                                <tr class="col-12">
+                                    <th class="col-4"><h4>STATUS</h4></th>
+                                    <th class="col-4"><h4>DATA</h4></th>
+                                    <th class="col-4"><h4>HORÁRIO</h4></th>
+                                    <th class="col-4"><h4>PAGAMENTO</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in consultas: %}
                                     <tr class="col-12">
                                         <td class="col-4"><p>{{i.status}}</p></td>
                                         <td class="col-4"><p>{{i.data}}</p></td>
                                         <td class="col-4"><p>{{i.horario}}</p></td>
+                                        <td class="col-4"><p><a href="/gerar-pagamento/{{i.idConsulta}}">GERAR PAGAMENTO</a></p></td>
                                     </tr>
-                                {% endif %}
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <p class="text-center"><a href="/homepage">Voltar</a></p>
+                    </div>
                 </div>
-                <p class="text-center"><a href="/homepage">Voltar</a></p>
-            </div>
+            {% else %}
+                <div class="col-11 col-sm-8 col-lg-6">
+                    <div class="row justify-content-center">
+                        <table class="col-12" cellpadding="5px">
+                            <thead class="col-12">
+                                <tr class="col-12">
+                                    <th class="col-4"><h4>STATUS</h4></th>
+                                    <th class="col-4"><h4>DATA</h4></th>
+                                    <th class="col-4"><h4>HORÁRIO</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in consultas: %}
+                                    {% if i.paciente == paciente.idPaciente %}
+                                        <tr class="col-12">
+                                            <td class="col-4"><p>{{i.status}}</p></td>
+                                            <td class="col-4"><p>{{i.data}}</p></td>
+                                            <td class="col-4"><p>{{i.horario}}</p></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center"><a href="/homepage">Voltar</a></p>
+                </div>
+            {% endif %}   
         </div>
     </section>
 

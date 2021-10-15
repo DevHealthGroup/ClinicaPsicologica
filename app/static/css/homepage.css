@@ -13,13 +13,22 @@ h3 {
     font-family: "Montserrat", sans-serif;
 }
 
+.item img {
+    transition: 0.2s ease-in-out;
+}
+
 .item {
     background-color: white;
     box-shadow: 0rem 0rem 1rem rgb(209, 209, 209);
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     margin: 1rem;
     padding: 2rem 0;
+}
+
+.item:hover img {
+    transition: 0.2s ease-in-out;
+    padding: 1rem;
 }
 
 section {

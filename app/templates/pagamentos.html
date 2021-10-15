@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/homepage.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pagamentos.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.ico')}}" type="image/x-icon">
-    <title>Bem vindo {{paciente.nome}} | Carolina Ramos Bertolino </title>
+    <title>Pagamentos | Carolina Ramos Bertolino</title>
 </head>
 
 <body>
@@ -32,34 +32,63 @@
     <section class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h3>BEM VINDO {{paciente.nome}}</h3>
-                <p class="text-center"><a href="/" class="a">Sair</a></p>
+                <h3>{{ mensagem }}</h3>
+                <h3>PAGAMENTOS</h3>
             </div>
 
-            <div class="col-10 col-sm-6 col-lg-3 item">
+            {% if paciente.idPaciente == 3 %}
+            <div class="col-11 col-sm-8 col-lg-6">
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-5 col-lg-7">
-                        <h3>Cadastro</h3>
-                        <a href="/cadastro/editar" target="_self"><img src="{{url_for('static', filename='imgs/cadastro.png')}}" class="img-fluid"></a>
-                    </div>
+                    <table class="col-12" cellpadding="5px">
+                        <thead class="col-12">
+                            <tr class="col-12">
+                                <th class="col-4"><h4>SITUAÇÃO</h4></th>
+                                <th class="col-4"><h4>DATA</h4></th>
+                                <th class="col-4"><h4>VALOR</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in pagamentos %}
+                                <tr class="col-12">
+                                    <td class="col-4"><p>{{i.status}}</p></td>
+                                    <td class="col-4"><p>{{i.consulta}}</p></td>
+                                    <td class="col-4"><p>{{i.valor}}</p></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <p class="text-center"><a href="/homepage">Voltar</a></p>
                 </div>
             </div>
-            <div class="col-10 col-sm-6 col-lg-3 item">
+        {% else %}
+            <div class="col-11 col-sm-8 col-lg-6">
                 <div class="row justify-content-center">
-                    <div class="col-6 col-md-5 col-lg-7">
-                        <h3>Consultas</h3>
-                        <a href="/consultas" target="_self"><img src="{{url_for('static', filename='imgs/consultas.png')}}" class="img-fluid"></a>
-                    </div>
+                    <table class="col-12" cellpadding="5px">
+                        <thead class="col-12">
+                            <tr class="col-12">
+                                <th class="col-4"><h4>SITUAÇÃO</h4></th>
+                                <th class="col-4"><h4>DATA</h4></th>
+                                <th class="col-4"><h4>VALOR</h4></th>
+                                <th class="col-4"><h4>PAGAR</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in pagamentos: %}
+                                {% if i.paciente == paciente.idPaciente %}
+                                    <tr class="col-12">
+                                        <td class="col-4"><p>{{i.status}}</p></td>
+                                        <td class="col-4"><p>{{i.consulta}}</p></td>
+                                        <td class="col-4"><p>{{i.valor}}</p></td>
+                                        <td class="col-4"><a href="">PAGAR</a></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
+                <p class="text-center"><a href="/homepage">Voltar</a></p>
             </div>
-            <div class="col-10 col-sm-6 col-lg-3 item">
-                <div class="row justify-content-center">
-                    <div class="col-6 col-md-5 col-lg-7">
-                        <h3>Financeiro</h3>
-                        <a href="/pagamentos" target="_self"><img src="{{url_for('static', filename='imgs/pagamentos.png')}}" class="img-fluid"></a>
-                    </div>
-                </div>
-            </div>
+        {% endif %} 
         </div>
     </section>
 
@@ -100,6 +129,7 @@
             </div>
         </div>
     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 
