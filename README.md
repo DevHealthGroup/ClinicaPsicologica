@@ -3,6 +3,7 @@
 
 
 <i>Ultima atualização 14/10/2021</i>
+<i>Função PAGAMENTO criada</i>
 
 <b>A fazer</b>:
 
