@@ -7,7 +7,7 @@
 
 <hr>
 
-<b>Como rodar</br>:
+<b>Como rodar</b>:
 
 Para rodar o projeto, basta baixar e rodar o arquivo 'run.py', em seguida o projeto irá abrir localmente no navegador.
 
