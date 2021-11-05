@@ -2,9 +2,8 @@
 # Aplicação do projeto
 
 
-<i>Ultima atualização 01/11/2021</i>
+<i>Ultima atualização 04/11/2021</i>
 
 <b>A fazer</b>:
 
-1. <br>
-2. Juntar APP com site<br>
+1. Juntar APP com site<br>
