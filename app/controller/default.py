@@ -1,8 +1,8 @@
 import requests
 from app import app, db
-from datetime import date, datetime
+from datetime import *
 from flask import Flask, url_for, redirect, render_template, request, session
-from app.model.tables import Paciente, Consulta, Pagamento, TipoPlano
+from app.model.tables import Paciente, Consulta, Pagamento
 import json
 
 
@@ -45,11 +45,27 @@ def index():
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
 
+    # PEGA AS INFORMAÇÕES DE TODOS OS PACIENTEs 
+    pacientes = Paciente.query.all()
+
     # QUANDO RECEBE OS DADOS DO FORMULÁRIO DE CADASTRO
     if (request.method == 'POST'):
 
+        for p in pacientes:
+            if p.doc == int(request.form['doc']):
+                return render_template('cadastro.html', erro = "Os dados inseridos já estão cadastrados")
+            if p.email == request.form['email']:
+                return render_template('cadastro.html', erro = "Os dados inseridos já estão cadastrados")
+            if p.telefone == request.form['telefone']:
+                return render_template('cadastro.html', erro = "Os dados inseridos já estão cadastrados")
+
         # ACESSA A API VIACEP UTILIZANDO O CEP PASSADO NO CADASTRO
         urlViaCep = f"https://viacep.com.br/ws/{request.form['cep']}/json/"
+
+        try: 
+            requests.get(urlViaCep).json()
+        except:
+            return render_template('cadastro.html', erro = "O CEP inserido é inválido")
 
         logradouro = requests.get(urlViaCep).json()['logradouro']
         complemento = request.form['complemento']
@@ -66,7 +82,8 @@ def cadastro():
                                 request.form['nasc'], 
                                 endereco_completo, 
                                 request.form['telefone'], 
-                                request.form['email'], 
+                                request.form['email'],
+                                request.form['tipoPlano'],
                                 request.form['senha'])
 
         # ADICIONA O NOVO PACIENTE AO BANCO DE DADOS
@@ -136,6 +153,32 @@ def editarcadastro():
 
 
 
+@app.route("/cadastro/arquivar/<int:id>", methods=['GET', 'POST'])
+def arquivar(id):
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    idPaciente = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(idPaciente)
+
+    pacientes = Paciente.query.all()
+
+    paciente = Paciente.query.get(id)
+    paciente.arquivado = 1
+
+    db.session.commit()
+
+    return redirect(url_for("editarcadastro", paciente = pacienteLog, pacientes = pacientes))
+
+
+
+
+
 # ROTA DA HOMEPAGE
 @app.route("/homepage", methods=['GET', 'POST'])
 def homepage():
@@ -174,6 +217,12 @@ def consultas():
     # PEGA AS CONSULTAS
     consultas = Consulta.query.all()
 
+    # PEGA OS IDs DAS CONSULTAS NO SISTEMAS E ARMAZENA EM UMA LISTA
+    pagamentosLog = Pagamento.query.all()
+    pagamentos = []
+    for pag in pagamentosLog:
+        pagamentos.append(pag.consulta)
+
     # QUANDO RECEBE OS DADOS DO FORMULÁRIO DE CADASTRO
     if (request.method == 'POST'):
 
@@ -183,35 +232,94 @@ def consultas():
         # PEGA A DATA PASSADA PELO FORMULÁRIO, SEPARA E CONVERTE EM OBJETO DATA
         dataAgendada = request.form['dia']
         dataAgendada = dataAgendada.split('-')
+        dataAgendadaBanco = f'{int(dataAgendada[2])} - {int(dataAgendada[1])} - {int(dataAgendada[0])}'
         dataAgendada = date(int(dataAgendada[0]), int(dataAgendada[1]), int(dataAgendada[2]))
 
         # PEGA A DATA ATUAL DO USUÁRIO
         dataAtual = date.today()
 
+        # 
+        if (dataAgendada > (dataAtual + timedelta(days=90))):
+            return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos, mensagem = "Ops, a data inserida é muito distante")
+
+        # VERIFICA O DIA DA SEMANA
+        if ((dataAgendada.weekday()) == 5 or (dataAgendada.weekday()) == 6):
+            return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos, mensagem = "Ops, não é possível agendar no final de semana")
+
         # VERIFICA SE A DATA PASSADA PELO FORMULÁRIO É VÁLIDA
         if (dataAgendada < dataAtual or dataAgendada == dataAtual):
-            return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, mensagem = "Ops, a data inserida é inválida")
+            return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos, mensagem = "Ops, a data inserida é inválida")
 
         # VERIFICA SE A DATA PASSADO PELO FORMULÁRIO ESTÁ LIVRE
         for consulta in consultas:
             if ((str(dataAgendada) == consulta.data) and (horaAgendada == consulta.horario)):
-                return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, mensagem = "Ops, a data inserida já está marcada")
+                return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos, mensagem = "Ops, a data inserida já está marcada")
 
         # CRIA UM NOVO AGENDAMENTO
         novoAgendamento = Consulta(pacienteLog.idPaciente,
                                    horaAgendada,
-                                   dataAgendada)
+                                   dataAgendadaBanco)
 
         # ADICIONA O NOVO AGENDAMENTO AO BANCO DE DADOS
         db.session.add(novoAgendamento)
         db.session.commit()
 
         # REDIRECIONA PARA A ROTA DE LOGIN
-        return redirect(url_for("consultas", paciente = pacienteLog, consultas = consultas, mensagem = "Agendamento realizado com sucesso!"))
+        return redirect(url_for("consultas", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos, mensagem = "Agendamento realizado com sucesso!"))
 
 
     # RENDERIZA A TELA DE EDIÇÃO DE CADASTRO
-    return render_template("consultas.html", paciente = pacienteLog, consultas = consultas)
+    return render_template("consultas.html", paciente = pacienteLog, consultas = consultas, pagamentos = pagamentos)
+
+
+
+
+
+# ROTA DE APROVAR AGENDAMENTO
+@app.route("/consultas/aprovar/<int:id>", methods=['GET', 'POST'])
+def aprovarAgendamento(id):
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    idPaciente = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(idPaciente)
+
+    consulta = Consulta.query.get(id)
+    consulta.status = "Agendada"
+
+    db.session.commit()
+
+    return redirect(url_for("consultas", paciente = pacienteLog))
+
+
+
+
+
+# ROTA DE APROVAR AGENDAMENTO
+@app.route("/consultas/reprovar/<int:id>", methods=['GET', 'POST'])
+def reprovarAgendamento(id):
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    idPaciente = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(idPaciente)
+
+    consulta = Consulta.query.get(id)
+    consulta.status = "Cancelada"
+
+    db.session.commit()
+
+    return redirect(url_for("consultas", paciente = pacienteLog))
 
 
 
@@ -233,8 +341,10 @@ def pagamentos():
 
     # PEGA OS PAGAMENTOS DO BANCO DE DADOS
     pagamentos = Pagamento.query.all()
+    pacientes = Paciente.query.all()
+    consultas = Consulta.query.all()
 
-    return render_template("pagamentos.html", paciente = pacienteLog, pagamentos = pagamentos)
+    return render_template("pagamentos.html", paciente = pacienteLog, pagamentos = pagamentos, pacientes = pacientes, consultas = consultas)
 
 
 
@@ -253,13 +363,49 @@ def gerarPagamento(id):
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
     pacienteLog = Paciente.query.get(idPaciente)
 
-    consulta = Consulta.query.get(id)
-    paciente = consulta.paciente
-    paci = Paciente.query.get(paciente)
+    # QUANDO RECEBE OS DADOS DO FORMULÁRIO DE CADASTRO
+    if (request.method == 'POST'):
 
-    novoPagamento = Pagamento(id, paci.idPaciente, 50.00, paci.tipoPlano)
+        valor = int(request.form['valor'])
 
-    db.session.add(novoPagamento)
+        consulta = Consulta.query.get(id)
+        paciente = consulta.paciente
+        paci = Paciente.query.get(paciente)
+
+        novoPagamento = Pagamento(paci.idPaciente, id, valor, paci.tipoPlano)
+
+        db.session.add(novoPagamento)
+        db.session.commit()
+
+        return redirect(url_for("consultas", paciente = pacienteLog))
+
+    return render_template("inserirvalor.html", id = id)
+
+
+
+
+
+# ROTA PARA DAR BAIXA NO PAGAMENTO
+@app.route("/pagar/<int:id>", methods=['GET', 'POST'])
+def pagar(id):
+
+    # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
+    if ('login' not in session):
+        return redirect(url_for('index'))
+
+    # PASSA O ID DO USUÁRIO
+    idPaciente = session.get('login')
+
+    # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
+    pacienteLog = Paciente.query.get(idPaciente)
+
+    pacientes = Paciente.query.all()
+    pagamentos = Pagamento.query.all()
+    consultas = Consulta.query.all()
+
+    pagamento = Pagamento.query.get(id)
+    pagamento.status = "Pago"
+
     db.session.commit()
 
-    return redirect(url_for("consultas", paciente = pacienteLog))
+    return redirect(url_for("pagamentos", paciente = pacienteLog, pagamentos = pagamentos, pacientes = pacientes, consultas = consultas))

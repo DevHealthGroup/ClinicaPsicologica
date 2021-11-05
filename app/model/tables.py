@@ -15,9 +15,10 @@ class Paciente(db.Model):
     telefone = db.Column(db.String(11))
     tipoPlano = db.Column(db.Integer)
     senha = db.Column(db.String(20))
+    arquivado = db.Column(db.Integer)
 
     # CONSTRUTOR DA TABELA PACIENTE
-    def __init__(self, nome, doc, sexo, dtNasc, endereco, telefone, email, senha):
+    def __init__(self, nome, doc, sexo, dtNasc, endereco, telefone, email, tipoPlano, senha):
         self.doc = doc
         self.nome = nome
         self.sexo = sexo
@@ -25,8 +26,9 @@ class Paciente(db.Model):
         self.endereco = endereco
         self.telefone = telefone
         self.email = email
-        self.tipoPlano = 0
+        self.tipoPlano = tipoPlano
         self.senha = senha
+        self.arquivado = 0
 
 
 
@@ -69,11 +71,11 @@ class Pagamento(db.Model):
 
 
 # CRIAÇÃO DA TABELA TIPO PLANO
-class TipoPlano(db.Model):
-    __tablename__ = 'tipoPlano'
-    idTipoPlano = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    desc = db.Column(db.String(30))
+#class TipoPlano(db.Model):
+#    __tablename__ = 'tipoPlano'
+#    idTipoPlano = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#    desc = db.Column(db.String(30))
 
     # CONSTRUTOR DA TABELA TIPO PLANO
-    def __init__(self, desc):
-        self.desc = desc
+#    def __init__(self, desc):
+#        self.desc = desc

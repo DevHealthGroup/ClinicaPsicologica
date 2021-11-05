@@ -33,35 +33,49 @@
         <div class="row justify-content-center">
 
             <div class="col-12 mt-5">
-                {% if paciente.idPaciente == 3 %}
-                    <h3>CADASTRO DOS PACIENTES</h3>
+                {% if paciente.doc == 3 %}
+                    <h3>PACIENTES ATIVOS</h3>
                 {% else %}
                     <h3>EDITAR CADASTRO</h3>
                 {% endif %}
             </div>
 
-            {% if paciente.idPaciente == 3 %}
-                <div class="col-11 col-sm-8 col-lg-10">
+            {% if paciente.doc == 3 %}
+                <div class="col-11 col-sm-10">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
                                 <tr class="col-12">
-                                    <th class="col-4"><h4>NOME</h4></th>
-                                    <th class="col-4"><h4>DOCUMENTO</h4></th>
-                                    <th class="col-4"><h4>EMAIL</h4></th>
-                                    <th class="col-4"><h4>TELEFONE</h4></th>
-                                    <th class="col-4"><h4>PLANO</h4></th>
+                                    <th class="col-2"><h4>NOME</h4></th>
+                                    <th class="col-1"><h4>DOCUMENTO</h4></th>
+                                    <th class="col-2"><h4>EMAIL</h4></th>
+                                    <th class="col-3"><h4>ENDEREÇO</h4></th>
+                                    <th class="col-2"><h4>TELEFONE</h4></th>
+                                    <th class="col-1"><h4>CONVÊNIO</h4></th>
+                                    <th class="col-1"><h4>ARQUIVAR</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in pacientes: %}
-                                    <tr class="col-12">
-                                        <td class="col-4"><p>{{i.nome}}</p></td>
-                                        <td class="col-4"><p>{{i.doc}}</p></td>
-                                        <td class="col-4"><p>{{i.email}}</p></td>
-                                        <td class="col-4"><p>{{i.telefone}}</p></td>
-                                        <td class="col-4"><p>{{i.tipoPlano}}</p></td>
-                                    </tr>
+                                    {% if i.arquivado == 0 %}
+                                        {% if i.idPaciente != 3 %}
+                                            <tr class="col-12">
+                                                <td class="col-2"><p>{{i.nome}}</p></td>
+                                                <td class="col-1"><p>{{i.doc}}</p></td>
+                                                <td class="col-2"><p>{{i.email}}</p></td>
+                                                <td class="col-3"><p>{{i.endereco}}</p></td>
+                                                <td class="col-2"><p>{{i.telefone}}</p></td>
+                                                <!-- td class="col-1"><input type="text" value="{{i.tipoPlano}}"></td -->
+                                                {% if i.tipoPlano == 1 %}
+                                                    <td class="col-1"><p>Sim</p></td>
+                                                {% endif %}
+                                                {% if i.tipoPlano == 0 %}
+                                                    <td class="col-1"><p>Não</p></td>
+                                                {% endif %}
+                                                <td class="col-1"><p><a href="/cadastro/arquivar/{{i.idPaciente}}">ARQUIVAR</a></p></td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -69,19 +83,51 @@
                 </div>
             {% endif %}
 
-            {% if paciente.idPaciente != 3 %}
+            {% if paciente.doc == 3 %}
+                <div class="col-12 mt-5">
+                    <h3>PACIENTES ARQUIVADOS</h3>
+                </div>
+            {% endif %}
+
+            {% if paciente.doc == 3 %}
+                <div class="col-11 col-sm-10">
+                    <div class="row justify-content-center">
+                        <table class="col-12" cellpadding="5px">
+                            <thead class="col-12">
+                                <tr class="col-12">
+                                    <th class="col-2"><h4>NOME</h4></th>
+                                    <th class="col-1"><h4>DOCUMENTO</h4></th>
+                                    <th class="col-3"><h4>EMAIL</h4></th>
+                                    <th class="col-3"><h4>ENDEREÇO</h4></th>
+                                    <th class="col-2"><h4>TELEFONE</h4></th>
+                                    <th class="col-1"><h4>PLANO</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in pacientes: %}
+                                    {% if i.arquivado == 1 %}
+                                        <tr class="col-12">
+                                            <td class="col-2"><p>{{i.nome}}</p></td>
+                                            <td class="col-1"><p>{{i.doc}}</p></td>
+                                            <td class="col-3"><p>{{i.email}}</p></td>
+                                            <td class="col-3"><p>{{i.endereco}}</p></td>
+                                            <td class="col-2"><p>{{i.telefone}}</p></td>
+                                            <td class="col-1"><p>{{i.tipoPlano}}</p></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if paciente.doc != 3 %}
                 <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
                     <div class="form">
                         <div class="row justify-content-center">
                             <form action="/cadastro/editar" method="POST" class="col-12">
                                 <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <div class="row justify-content-center">
-                                            <div class="col-8">
-                                                <img src="{{url_for('static', filename='imgs/avatar.svg')}}" alt="User Icon" class="img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-12 input">
                                         <label for="nome">Nome</label>
                                         <input type="text" name="nome" autocomplete="off" required value="{{paciente.nome}}">
@@ -151,31 +197,11 @@
     
     <footer class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-4">
-                <p>Rua Coronel Agenor de Camargo, 81<br> 
+            <div class="col-12">
+                <p>Rua Coronel Agenor de Camargo, 81 - 09020-220<br> 
                     Centro - Santo André, SP<br> 
-                    (11) 98492-0089<br>
-                    example@example.com.br
+                    (11) 98492-0089<br>                    
                 </p>
-            </div>
-            
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="row justify-content-center">
-                    <div class="col-12 d-flex">
-                        <a href="https://www.f.com/" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/facebooklogo.png')}}" alt="facebook logo" class="img-fluid">
-                        </a>
-                        <a href="https://www.i.com" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/instagramlogo.png')}}" alt="instagram logo" class="img-fluid">
-                        </a>
-                        <a href="https://www.linkedin.com/in/carolina-bertolino-68aa373b/" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/linkedin.png')}}" alt="linkedin logo" class="img-fluid">
-                        </a>
-                        <a href="https://wa.me/+5511984920089" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/whatsapplogo.png')}}" alt="whatsapp logo" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 

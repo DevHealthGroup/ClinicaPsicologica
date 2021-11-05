@@ -53,6 +53,10 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0.5rem 0;
 }
 
+.erro {
+    color: red;
+}
+
 button {
     font-family: "Montserrat", sans-serif;
     background-color: #6388ba;
@@ -67,6 +71,7 @@ button {
 }
 
 section {
+    min-height: 62vh;
     margin: 2rem 0;
 }
 
@@ -117,4 +122,9 @@ footer p {
 
 footer a {
     margin: 1rem 0;
+}
+
+img {
+    margin: auto;
+    width: auto;
 }

@@ -31,9 +31,9 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            {% if paciente.idPaciente != 3 %}
+            {% if paciente.doc != 3 %}
                 <div class="col-12">
-                    <h3>{{ mensagem }}</h3>
+                    <h3><b class="erro">{{ mensagem }}</b></h3>
                     <h3>AGENDAR CONSULTA</h3>
                 </div>
 
@@ -61,32 +61,53 @@
             {% endif %}
 
             <div class="col-12 mt-5">
-                {% if paciente.idPaciente == 3 %}
+                {% if paciente.doc == 3 %}
                     <h3>CONSULTAS</h3>
                 {% else %}
                     <h3>SUAS CONSULTAS</h3>
                 {% endif %}
             </div>
 
-            {% if paciente.idPaciente == 3 %}
-                <div class="col-11 col-sm-8 col-lg-6">
+            {% if paciente.doc == 3 %}
+                <div class="col-11 col-sm-8">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
                                 <tr class="col-12">
-                                    <th class="col-4"><h4>STATUS</h4></th>
-                                    <th class="col-4"><h4>DATA</h4></th>
-                                    <th class="col-4"><h4>HORÁRIO</h4></th>
-                                    <th class="col-4"><h4>PAGAMENTO</h4></th>
+                                    <th class="col-1"><h4>Nº</h4></th>
+                                    <th class="col-3"><h4>STATUS</h4></th>
+                                    <th class="col-2"><h4>DATA</h4></th>
+                                    <th class="col-2"><h4>HORÁRIO</h4></th>
+                                    <th class="col-2"><h4>APROVAÇÃO</h4></th>
+                                    <th class="col-2"><h4>PAGAMENTO</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in consultas: %}
                                     <tr class="col-12">
-                                        <td class="col-4"><p>{{i.status}}</p></td>
-                                        <td class="col-4"><p>{{i.data}}</p></td>
-                                        <td class="col-4"><p>{{i.horario}}</p></td>
-                                        <td class="col-4"><p><a href="/gerar-pagamento/{{i.idConsulta}}">GERAR PAGAMENTO</a></p></td>
+                                        <td class="col-1"><p>{{i.idConsulta}}</p></td>
+                                        <td class="col-3"><p>{{i.status}}</p></td>
+                                        <td class="col-2"><p>{{i.data}}</p></td>
+                                        <td class="col-2"><p>{{i.horario}}</p></td>
+                                        {% if i.status == "Aguardando aprovação" %}
+                                            <td class="col-2"><div class="buttons d-flex">
+                                                <a href="/consultas/aprovar/{{i.idConsulta}}"><img src="{{url_for('static', filename='imgs/aprovar.png')}}" alt="Aprovar" class="img-fluid"></a>
+                                                <a href="/consultas/reprovar/{{i.idConsulta}}"><img src="{{url_for('static', filename='imgs/recusar.png')}}" alt="Reprovar" class="img-fluid"></a>
+                                            </div></td>
+                                        {% endif %}
+                                        {% if i.status == "Agendada" %}
+                                            <td class="col-2"><div class="buttons d-flex"><span></span></td>
+                                        {% endif %}
+                                        {% if i.status == "Cancelada" %}
+                                            <td class="col-2"><div class="buttons d-flex"><span></span></td>
+                                        {% endif %}
+                                        {% if i.status == "Agendada" %}
+                                            {% if i.idConsulta in pagamentos %}
+                                                <td class="col-2"><p>PAGAMENTO GERADO</p></td>
+                                            {% else %}
+                                                <td class="col-2"><p class="text-center"><a href="/gerar-pagamento/{{i.idConsulta}}">GERAR PAGAMENTO</a></p></td>
+                                            {% endif %}
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -95,23 +116,25 @@
                     </div>
                 </div>
             {% else %}
-                <div class="col-11 col-sm-8 col-lg-6">
+                <div class="col-11 col-sm-8">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
                                 <tr class="col-12">
+                                    <th class="col-3"><h4>Nº</h4></th>
                                     <th class="col-4"><h4>STATUS</h4></th>
-                                    <th class="col-4"><h4>DATA</h4></th>
-                                    <th class="col-4"><h4>HORÁRIO</h4></th>
+                                    <th class="col-3"><h4>DATA</h4></th>
+                                    <th class="col-2"><h4>HORÁRIO</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in consultas: %}
                                     {% if i.paciente == paciente.idPaciente %}
                                         <tr class="col-12">
+                                            <td class="col-3"><p>{{i.idConsulta}}</p></td>
                                             <td class="col-4"><p>{{i.status}}</p></td>
-                                            <td class="col-4"><p>{{i.data}}</p></td>
-                                            <td class="col-4"><p>{{i.horario}}</p></td>
+                                            <td class="col-3"><p>{{i.data}}</p></td>
+                                            <td class="col-2"><p>{{i.horario}}</p></td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
@@ -127,31 +150,11 @@
 
     <footer class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-4">
-                <p>Rua Coronel Agenor de Camargo, 81<br> 
+            <div class="col-12">
+                <p>Rua Coronel Agenor de Camargo, 81 - 09020-220<br> 
                     Centro - Santo André, SP<br> 
-                    (11) 98492-0089<br>
-                    example@example.com.br
+                    (11) 98492-0089<br>                    
                 </p>
-            </div>
-            
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="row justify-content-center">
-                    <div class="col-12 d-flex">
-                        <a href="https://www.f.com/" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/facebooklogo.png')}}" alt="facebook logo" class="img-fluid">
-                        </a>
-                        <a href="https://www.i.com" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/instagramlogo.png')}}" alt="instagram logo" class="img-fluid">
-                        </a>
-                        <a href="https://www.linkedin.com/in/carolina-bertolino-68aa373b/" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/linkedin.png')}}" alt="linkedin logo" class="img-fluid">
-                        </a>
-                        <a href="https://wa.me/+5511984920089" target="_blank">
-                            <img src="{{url_for('static', filename='imgs/whatsapplogo.png')}}" alt="whatsapp logo" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 

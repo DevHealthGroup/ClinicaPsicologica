@@ -67,6 +67,7 @@ button {
 }
 
 section {
+    min-height: 62vh;
     margin: 2rem 0;
 }
 
@@ -85,7 +86,7 @@ table {
     background-color: white;
 }
 
-td p {
+td p{
     font-family: 'Open Sans', sans-serif;;
     text-align: center;
     font-size: 1.1rem;

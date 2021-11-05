@@ -13,6 +13,17 @@ h3 {
     font-family: "Montserrat", sans-serif;
 }
 
+h4 {
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+    color: white;
+    font-size: 1.3rem;
+    font-family: "Montserrat", sans-serif;
+}
+
 label {
     font-family: 'Open Sans', sans-serif;;
     text-align: center;
@@ -56,6 +67,7 @@ button {
 }
 
 section {
+    min-height: 62vh;
     margin: 2rem 0;
 }
 
@@ -106,4 +118,8 @@ td p {
     font-family: 'Open Sans', sans-serif;;
     text-align: center;
     font-size: 1.1rem;
+}
+
+.erro {
+    color: red;
 }
