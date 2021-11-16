@@ -1,0 +1,20 @@
+package com.clinica.devhealthgroup
+
+import androidx.room.Room
+
+object DatabaseManager {
+    private var dbInstance: DevHealthGroup
+
+    init {
+        val context = DHGApplication.getInstance().applicationContext
+        dbInstance = Room.databaseBuilder(
+            context,
+            DevHealthGroup::class.java,
+            "dhg.sqlite"
+        ).build()
+    }
+
+    fun getArtigosDAO(): ArtigosDAO {
+        return dbInstance.artigosDAO()
+    }
+}
