@@ -7,11 +7,11 @@ Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 <b>Branchs</b><br>
 <br>
 • Master - Documentação do Projeto<br>
-• AC02 - AC de Mobile 2 <i>Concluída</i><br>
-• AC03 - AC de Mobile 3 <i>Concluída</i><br>
-• AC04 - AC de Mobile 4 <i>Concluída</i><br>
+• AC02 - AC de Mobile 2 <i>(Concluída)</i><br>
+• AC03 - AC de Mobile 3 <i>(Concluída)</i><br>
+• AC04 - AC de Mobile 4 <i>(Concluída)</i><br>
 • AC05 - AC de Mobile 5<br>
-• App - Aplicação Web  <i>Concluído</i>
+• App - Aplicação Web  <i>(Concluído)</i>
 
 <hr>
 
