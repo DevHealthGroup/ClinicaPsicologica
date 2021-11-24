@@ -36,7 +36,7 @@
                 <h3>PAGAMENTOS</h3>
             </div>
 
-            {% if paciente.doc == 3 %}
+            {% if paciente.doc == 6127045 %}
             <div class="col-11 col-sm-8">
                 <div class="row justify-content-center">
                     <table class="col-12" cellpadding="5px">
@@ -59,7 +59,7 @@
                                             <td class="col-3"><p>{{p.nome}}</p></td>
                                         {% endif %}
                                     {% endfor %}
-                                    <td class="col-1"><p>{{i.valor}}</p></td>
+                                    <td class="col-1"><p>R$ {{i.valor}}</p></td>
                                     {% if i.status == "Pendente" %} 
                                         <td class="col-3"><p><a href="/pagar/{{i.idPagamento}}">PAGAR</a></p></td>
                                     {% endif %}
@@ -96,7 +96,7 @@
                                                 <td class="col-3"><p>{{c.data}}</p></td>
                                             {% endif %}
                                         {% endfor %}
-                                        <td class="col-3"><p>{{i.valor}}</p></td>
+                                        <td class="col-3"><p>R$ {{i.valor}}</p></td>
                                     </tr>
                                 {% endif %}
                             {% endfor %}

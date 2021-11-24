@@ -33,14 +33,14 @@
         <div class="row justify-content-center">
 
             <div class="col-12 mt-5">
-                {% if paciente.doc == 3 %}
+                {% if paciente.doc == 6127045 %}
                     <h3>PACIENTES ATIVOS</h3>
                 {% else %}
                     <h3>EDITAR CADASTRO</h3>
                 {% endif %}
             </div>
 
-            {% if paciente.doc == 3 %}
+            {% if paciente.doc == 6127045 %}
                 <div class="col-11 col-sm-10">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
@@ -58,14 +58,13 @@
                             <tbody>
                                 {% for i in pacientes: %}
                                     {% if i.arquivado == 0 %}
-                                        {% if i.idPaciente != 3 %}
+                                        {% if i.doc != 6127045 %}
                                             <tr class="col-12">
                                                 <td class="col-2"><p>{{i.nome}}</p></td>
                                                 <td class="col-1"><p>{{i.doc}}</p></td>
                                                 <td class="col-2"><p>{{i.email}}</p></td>
                                                 <td class="col-3"><p>{{i.endereco}}</p></td>
                                                 <td class="col-2"><p>{{i.telefone}}</p></td>
-                                                <!-- td class="col-1"><input type="text" value="{{i.tipoPlano}}"></td -->
                                                 {% if i.tipoPlano == 1 %}
                                                     <td class="col-1"><p>Sim</p></td>
                                                 {% endif %}
@@ -83,13 +82,13 @@
                 </div>
             {% endif %}
 
-            {% if paciente.doc == 3 %}
+            {% if paciente.doc == 6127045 %}
                 <div class="col-12 mt-5">
                     <h3>PACIENTES ARQUIVADOS</h3>
                 </div>
             {% endif %}
 
-            {% if paciente.doc == 3 %}
+            {% if paciente.doc == 6127045 %}
                 <div class="col-11 col-sm-10">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
@@ -97,10 +96,11 @@
                                 <tr class="col-12">
                                     <th class="col-2"><h4>NOME</h4></th>
                                     <th class="col-1"><h4>DOCUMENTO</h4></th>
-                                    <th class="col-3"><h4>EMAIL</h4></th>
+                                    <th class="col-2"><h4>EMAIL</h4></th>
                                     <th class="col-3"><h4>ENDEREÇO</h4></th>
                                     <th class="col-2"><h4>TELEFONE</h4></th>
-                                    <th class="col-1"><h4>PLANO</h4></th>
+                                    <th class="col-1"><h4>CONVÊNIO</h4></th>
+                                    <th class="col-1"><h4>DESARQUIVAR</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,10 +109,16 @@
                                         <tr class="col-12">
                                             <td class="col-2"><p>{{i.nome}}</p></td>
                                             <td class="col-1"><p>{{i.doc}}</p></td>
-                                            <td class="col-3"><p>{{i.email}}</p></td>
+                                            <td class="col-2"><p>{{i.email}}</p></td>
                                             <td class="col-3"><p>{{i.endereco}}</p></td>
                                             <td class="col-2"><p>{{i.telefone}}</p></td>
-                                            <td class="col-1"><p>{{i.tipoPlano}}</p></td>
+                                            {% if i.tipoPlano == 1 %}
+                                                <td class="col-1"><p>Sim</p></td>
+                                            {% endif %}
+                                            {% if i.tipoPlano == 0 %}
+                                                <td class="col-1"><p>Não</p></td>
+                                            {% endif %}
+                                            <td class="col-1"><p><a href="/cadastro/desarquivar/{{i.idPaciente}}">DESARQUIVAR</a></p></td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
@@ -122,7 +128,7 @@
                 </div>
             {% endif %}
 
-            {% if paciente.doc != 3 %}
+            {% if paciente.doc != 6127045 %}
                 <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
                     <div class="form">
                         <div class="row justify-content-center">
@@ -163,11 +169,15 @@
                                     </div>
                                     <div class="col-12 input">
                                         <label for="cep">CEP</label>
-                                        <input type="number" name="cep" autocomplete="off" value="{{endereco[2]}}" required>
+                                        <input type="number" name="cep" autocomplete="off" value="{{endereco[3]}}" required>
+                                    </div>
+                                    <div class="col-12 input">
+                                        <label for="numero">Número</label>
+                                        <input type="number" name="numero" autocomplete="off" value="{{endereco[1]}}" required>
                                     </div>
                                     <div class="col-12 input">
                                         <label for="complemento">Complemento</label>
-                                        <input type="text" name="complemento" autocomplete="off" value="{{endereco[1]}}">
+                                        <input type="text" name="complemento" autocomplete="off" value="{{endereco[2]}}">
                                     </div>
                                     <div class="col-12 input">
                                         <label for="telefone">Telefone</label>

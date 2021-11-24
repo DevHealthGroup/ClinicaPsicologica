@@ -31,7 +31,7 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            {% if paciente.doc != 3 %}
+            {% if paciente.doc != 6127045 %}
                 <div class="col-12">
                     <h3><b class="erro">{{ mensagem }}</b></h3>
                     <h3>AGENDAR CONSULTA</h3>
@@ -61,14 +61,14 @@
             {% endif %}
 
             <div class="col-12 mt-5">
-                {% if paciente.doc == 3 %}
+                {% if paciente.doc == 6127045 %}
                     <h3>CONSULTAS</h3>
                 {% else %}
                     <h3>SUAS CONSULTAS</h3>
                 {% endif %}
             </div>
 
-            {% if paciente.doc == 3 %}
+            {% if paciente.doc == 6127045 %}
                 <div class="col-11 col-sm-8">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">

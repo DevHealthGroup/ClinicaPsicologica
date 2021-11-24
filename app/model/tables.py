@@ -1,7 +1,5 @@
 from app import app, db
 
-
-
 # CRIAÇÃO DA TABELA PACIENTE
 class Paciente(db.Model):
     __tablename__ = "paciente"
@@ -31,7 +29,6 @@ class Paciente(db.Model):
         self.arquivado = 0
 
 
-
 # CRIAÇÃO DA TABELA CONSULTA
 class Consulta(db.Model):
     __tablename__ = "consulta"
@@ -47,7 +44,6 @@ class Consulta(db.Model):
         self.horario = horario
         self.data = data
         self.status = "Aguardando aprovação"
-
 
 
 # CRIAÇÃO DA TABELA PAGAMENTO
@@ -67,15 +63,3 @@ class Pagamento(db.Model):
         self.valor = valor
         self.status = 'Pendente'
         self.tipoPlano = tipoPlano
-
-
-
-# CRIAÇÃO DA TABELA TIPO PLANO
-#class TipoPlano(db.Model):
-#    __tablename__ = 'tipoPlano'
-#    idTipoPlano = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#    desc = db.Column(db.String(30))
-
-    # CONSTRUTOR DA TABELA TIPO PLANO
-#    def __init__(self, desc):
-#        self.desc = desc

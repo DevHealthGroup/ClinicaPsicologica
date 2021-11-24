@@ -34,7 +34,7 @@
             <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
                 <form action="/gerar-pagamento/{{id}}" method="post">
                     <label for="valor">Insira o valor</label>
-                    <input type="number" name="valor" id="valor">
+                    <input type="number" min="1" step="any" name="valor" id="valor">
                     <button type="submit">ENVIAR</button>
                 </form>
                 <p class="text-center"><a href="/consultas">Voltar</a></p>
