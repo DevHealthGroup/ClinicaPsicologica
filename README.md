@@ -22,3 +22,10 @@ Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 • Jéssica Ribeiro<br>
 • Paulo Leone<br>
 • Victoria Mendes
+
+<hr>
+
+<b>Aplicação Web</b><br>
+<br>
+Para acessar a aplicação: http://devhealthgroup.pythonanywhere.com/
+
