@@ -28,4 +28,6 @@ Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 <b>Aplicação Web</b><br>
 <br>
 Para acessar a aplicação: http://devhealthgroup.pythonanywhere.com/
-
+<br>
+O projeto web foi criado basicamente utilizando Python, Flask e Jinja2 para a criação. SQLAlchemy para manipular os dados, e o Bootstrap junto com CSS para estilizar as páginas.
+Caso queria ver o código da aplicação, acesse a <b>BRANCH APP</b>.
