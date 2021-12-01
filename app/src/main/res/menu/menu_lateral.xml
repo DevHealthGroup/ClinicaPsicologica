@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/cadastro"
+            android:title="Home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_consultas"
+            android:title="Consultas"
+            android:icon="@drawable/consultas" />
+        <item
+            android:id="@+id/nav_agendamentos"
+            android:title="Agendamentos"
+            android:icon="@drawable/consultas" />
+        <item
+            android:id="@+id/nav_pagamentos"
+            android:title="Pagamentos"
+            android:icon="@drawable/pagamentos" />
+        <item
+            android:id="@+id/nav_localizacao"
+            android:title="Localização"
+            android:icon="@android:drawable/ic_dialog_map" />
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/sair"
+            android:title="Sair" />
+
+    </group>
+</menu>

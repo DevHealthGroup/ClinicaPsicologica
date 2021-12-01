@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">devhealthgroup</string>
+    <!-- menu lateral/navigation drawer -->
+    <string name="abrir">Abrir</string>
+    <string name="fechar">Fechar</string>
+    <!-- Chave Google Cloud Platform -->
+    <string name="API_KEY">AIzaSyDYJmV0twT7Np3zNQdLlD8ilsL0uocC6J0</string>
+</resources>
