@@ -10,7 +10,7 @@ Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 • AC02 - AC de Mobile 2 <i>(Concluída)</i><br>
 • AC03 - AC de Mobile 3 <i>(Concluída)</i><br>
 • AC04 - AC de Mobile 4 <i>(Concluída)</i><br>
-• AC05 - AC de Mobile 5<br>
+• AC05 - AC de Mobile 5 <i>(Concluída)</i><br>
 • App - Aplicação Web
 
 <hr>
