@@ -11,7 +11,8 @@ Desenvolvimento do Sistema de Gerenciamento para Consultórios Particulares
 • AC03 - AC de Mobile 3 <i>(Concluída)</i><br>
 • AC04 - AC de Mobile 4 <i>(Concluída)</i><br>
 • AC05 - AC de Mobile 5 <i>(Concluída)</i><br>
-• App - Aplicação Web
+• Aplicação Web - Aplicação Web
+• App Mobile - Aplicativo Mobile
 
 <hr>
 
@@ -31,4 +32,16 @@ Para acessar a aplicação: http://devhealthgroup.pythonanywhere.com/
 <br>
 O projeto web foi criado basicamente utilizando Python, Flask e Jinja2 para a criação. SQLAlchemy para manipular os dados, e o Bootstrap junto com CSS para estilizar as páginas.
 <br>
-Caso queria ver o código da aplicação, acesse a <b>BRANCH APP</b>.
+Caso queria ver o código da aplicação, acesse a <b>BRANCH APLICAÇÃO WEB</b>.
+
+<hr>
+
+<b>Aplicativo Mobile</b><br>
+<br>
+O aplicatvio foi criado utilizando a linguagem Kotlin, e funciona juntamente com o web, via API.
+<br>
+Caso queria ver o código do aplicativo, acesse a <b>BRANCH APP MOBILE</b>.
+
+<hr>
+
+<b><em>Atenção, todos os códigos foram desenvolvidos com a finalidade de estudos, sinta-se livre para clonar os códigos e estudar/modificar, caso tenha alguma dúvida sobre, entre em contato: devhealtgroup.ads@gmail.com</em></b>
