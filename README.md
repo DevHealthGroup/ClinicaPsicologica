@@ -40,7 +40,7 @@ Caso queria ver o código da aplicação, acesse a <b>BRANCH APLICAÇÃO WEB</b>
 <br>
 O aplicatvio foi criado utilizando a linguagem Kotlin, e funciona juntamente com o web, via API.
 <br>
-Caso queria ver o código do aplicativo, acesse a <b>BRANCH APP MOBILE</b>.
+Caso queria ver o código do aplicativo, acesse a <b>BRANCH APLICATIVO MOBILE</b>.
 
 <hr>
 
