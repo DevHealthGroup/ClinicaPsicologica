@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.ico')}}" type="image/x-icon">
+    <title>Início | Carolina Ramos Bertolino</title>
+</head>
+<body>
+
+    <!-- MENU -->
+    <header class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 d-sm-block d-none">
+                <div class="row justify-content-center">
+                    <div class="col-4 col-sm-3 col-lg-2 col-xl-1">
+                        <img src="{{url_for('static', filename='imgs/logo.png')}}" alt="Carolina Ramos Bertolino Logo" class="img-fluid">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-10 col-lg-8 col-xl-6">
+                        <ul>
+                            <li><a href="#"><b>Início</b></a></li>
+                            <li><a href="/login">Agendamento</a></li>
+                            <li><a href="/artigos/0">Artigos</a></li>
+                            <li><a href="/contato">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 d-sm-none d-block">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="row d-flex mobile">
+                            <div class="col-4">
+                                <img src="{{url_for('static', filename='imgs/logo.png')}}" alt="Carolina Ramos Bertolino Logo" class="img-fluid">
+                            </div>
+        
+                            <div class="col-5">
+                                <div class="bars" id="bars">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
+                            </div>
+
+                            <div class="menu-mobile" id="menu-mobile">
+                                <ul>
+                                    <li><a href="#"><b>Início</b></a></li>
+                                    <li><a href="/login">Agendamento</a></li>
+                                    <li><a href="/artigos/0">Artigos</a></li>
+                                    <li><a href="/contato">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <!-- SOBRE A PSICÓLOGA -->
+        <section class="container-fluid about">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-lg-8 col-xl-6">
+                    <div class="row justify-content-center">
+                        <img src="{{url_for('static', filename='imgs/carol.png')}}" alt="Carolina Ramos Foto" class="img-fluid col-10 col-sm-6">
+                    </div>
+                    <div class="row justify-content-center">
+                        <p class="col-11 col-sm-10">Carolina Ramos Bertolino, psicóloga clínica e psicanalista no atendimento de crianças e adultos em consultório desde 2015. Formada pelo Centro Universitário Anhanguera de Santo André em 2014. Aluna especial pela USP e membro da Reclea (Rede Clínica de Estudo e Atendimento em Psicanálise). CRP: 06/127045.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="col-11 col-sm-10 col-lg-8 col-xl-6 m-auto">
+
+        <section class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
+                    <img src="{{url_for('static', filename='imgs/postit.png')}}" alt="Postits" class="img-fluid">
+                </div>
+            </div>
+        </section>
+
+        <hr class="col-11 col-sm-10 col-lg-8 col-xl-6 m-auto">
+
+        <section class="container-fluid perguntas">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <h2 class="text-center">PERGUNTAS FREQUENTES</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-10 col-lg-8 col-xl-5">
+                    <div class="col-12">
+                        <div class="perg">
+                            <h3>Quanto tempo dura em média uma consulta?</h3>
+                            <p>As consultas costumam durar em média 45 minutos.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="perg">
+                            <h3>Como agendar uma consulta?</h3>
+                            <p>Para agendar uma consulta, basta acessar a página de <a href="/login">AGENDAMENTO</a>.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="perg">
+                            <h3>Qual o horário de funcionamento?</h3>
+                            <p>Os atendimentos são realizados às terça-feiras, quarta-feiras e quinta-feiras, das 8h às 21hs.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="perg">
+                            <h3>Quais as formas de pagamento?</h3>
+                            <p>As formas de pagamento aceitas são: Dinheiro, transferência bancária, cartão de crédito e cartão de débito.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <p>Rua Coronel Agenor de Camargo, 81 - 09020-220<br> 
+                    Centro - Santo André, SP<br> 
+                    (11) 98492-0089<br>                    
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <p><small>Copyright &copy; 2021 Carolina Ramos Bertolino</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/menu.js')}}"></script>
+
+</body>
+</html>

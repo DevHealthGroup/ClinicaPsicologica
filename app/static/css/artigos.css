@@ -1,10 +1,11 @@
 body {
-    background-color: #f1e8e3;
+    background-color: #f1e8e3 !important;
 }
 
 header, footer {
     background-color: #6388ba;
 }
+
 header ul {
     list-style: none;
     justify-content: space-around;
@@ -60,64 +61,6 @@ header ul a:hover {
     color: white;
 }
 
-h3 {
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: "Montserrat", sans-serif;
-}
-
-label {
-    font-family: 'Open Sans', sans-serif;;
-    text-align: center;
-    font-size: 1.1rem;
-    width: 100%;
-}
-
-input, select {
-    box-shadow: 0rem 0rem 1rem rgb(209, 209, 209);
-    border: none;
-    padding: 0.8rem;
-    border-radius: 5px;
-    width: 100%;
-}
-
-input:focus {
-    border: 0 none;
-    outline: 0;
-}
-
-.input {
-    margin: 0.5rem 0;
-}
-
-button {
-    font-family: "Montserrat", sans-serif;
-    background-color: #6388ba;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 1rem 0;
-    width: 100%;
-}
-
-section {
-    min-height: 62vh;
-    margin: 2rem 0;
-}
-
-section a {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 1.15rem;
-    padding: 1rem;
-    color: black;
-    text-decoration: none;
-}
-
 footer p {
     margin: 1rem 0;
     text-align: center;
@@ -128,5 +71,65 @@ footer p {
 }
 
 footer a {
-    width: 20%;
+    margin: 1rem 0;
+}
+
+.artigos {
+    margin: 2% 0;
+}
+
+.artigo {
+    box-shadow: 0rem 0rem 1rem rgb(209, 209, 209);
+    border: none;
+    border-radius: 20px;
+    margin: 2.5% 0;
+    background-color: white;
+}
+
+.artigo img {
+    border-radius: 100px;
+    margin: 3% 0;
+}
+
+.artigo p {
+    margin: 2.5% 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+}
+
+.artigo a {
+    color: #6388ba;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.artigo h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+}
+
+.artigo-conteudo {
+    margin-top: 2.5%;
+}
+
+.artigos h1{
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+}
+
+.artigo-conteudo h4{
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+}
+
+.artigo-conteudo .voltar{
+    margin-top: 2%;
+    padding: 2.5%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #6388ba;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.6rem;
 }

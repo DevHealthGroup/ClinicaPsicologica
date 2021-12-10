@@ -5,9 +5,35 @@ from flask import Flask, url_for, redirect, render_template, request, session, j
 from app.model.tables import Paciente, Consulta, Pagamento
 import json
 
-# ROTA DE LOGIN
+# RODA INDEX
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    return render_template("index.html")
+
+# RODA ARTIGOS
+@app.route("/artigos/<int:id>", methods=['GET', 'POST'])
+def artigos(id):
+    if id == 0:
+        return render_template("artigos.html")
+    if id == 1:
+        return render_template("artigo-1.html")
+    if id == 2:
+        return render_template("artigo-2.html")
+    if id == 3:
+        return render_template("artigo-3.html")
+    if id == 4:
+        return render_template("artigo-4.html")
+    if id == 5:
+        return render_template("artigo-5.html")
+
+# RODA CONTATO
+@app.route("/contato", methods=['GET', 'POST'])
+def contato():
+    return render_template("contato.html")
+
+# ROTA DE LOGIN
+@app.route("/login", methods=['GET', 'POST'])
+def login():
     # LIMPA OS COOKIES
     session.clear()
     # QUANDO RECEBE OS DADOS
@@ -73,7 +99,7 @@ def cadastro():
         db.session.add(novoPaciente)
         db.session.commit()
         # REDIRECIONA PARA A ROTA DE LOGIN
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # RENDERIZA A TELA DE CADASTRO
     return render_template("cadastro.html")
 
@@ -82,7 +108,7 @@ def cadastro():
 def editarcadastro():
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # REGISTRA O ID DO USUÁRIO DE ACORDO COM OS COOKIES
     id = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NA URL
@@ -127,7 +153,7 @@ def editarcadastro():
 def arquivar(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO E PEGA ELE NO BANCO DE DADOS
     idPaciente = session.get('login')
     pacienteLog = Paciente.query.get(idPaciente)
@@ -146,7 +172,7 @@ def arquivar(id):
 def desarquivar(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     idPaciente = session.get('login')
     pacienteLog = Paciente.query.get(idPaciente)
@@ -165,7 +191,7 @@ def desarquivar(id):
 def homepage():
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     id = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -178,7 +204,7 @@ def homepage():
 def consultas():
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     id = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -233,7 +259,7 @@ def consultas():
 def aprovarAgendamento(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     idPaciente = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -251,7 +277,7 @@ def aprovarAgendamento(id):
 def reprovarAgendamento(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     idPaciente = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -269,7 +295,7 @@ def reprovarAgendamento(id):
 def pagamentos():
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     id = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -288,7 +314,7 @@ def pagamentos():
 def gerarPagamento(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     idPaciente = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
@@ -328,7 +354,7 @@ def gerarPagamento(id):
 def pagar(id):
     # VERIFICA SE O ID DO USUÁRIO ESTÁ NOS COOKIES
     if ('login' not in session):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     # PASSA O ID DO USUÁRIO
     idPaciente = session.get('login')
     # PEGA AS INFORMAÇÕES DO PACIENTE PELO ID PASSADO NO URL
