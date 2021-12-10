@@ -59,7 +59,7 @@
                                             <td class="col-3"><p>{{p.nome}}</p></td>
                                         {% endif %}
                                     {% endfor %}
-                                    <td class="col-1"><p>R$ {{i.valor}}</p></td>
+                                    <td class="col-1"><p>R${{i.valor}}</p></td>
                                     {% if i.status == "Pendente" %} 
                                         <td class="col-3"><p><a href="/pagar/{{i.idPagamento}}">PAGAR</a></p></td>
                                     {% endif %}
@@ -96,7 +96,7 @@
                                                 <td class="col-3"><p>{{c.data}}</p></td>
                                             {% endif %}
                                         {% endfor %}
-                                        <td class="col-3"><p>R$ {{i.valor}}</p></td>
+                                        <td class="col-3"><p>R${{i.valor}}</p></td>
                                     </tr>
                                 {% endif %}
                             {% endfor %}

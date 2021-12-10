@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static', filename='css/homepage.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.ico')}}" type="image/x-icon">
-    <title>Bem vindo {{paciente.nome}} | Carolina Ramos Bertolino </title>
+    <title>Bem-vindo(a) {{paciente.nome}} | Carolina Ramos Bertolino </title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     <section class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h3>BEM VINDO {{paciente.nome}}</h3>
+                <h3 style="text-transform: uppercase;">BEM-VINDO(A) {{paciente.nome}}</h3>
                 <p class="text-center"><a href="/" class="a">Sair</a></p>
             </div>
 

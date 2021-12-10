@@ -60,7 +60,7 @@
                 </div>
             {% endif %}
 
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-2">
                 {% if paciente.doc == 6127045 %}
                     <h3>CONSULTAS</h3>
                 {% else %}
@@ -69,43 +69,49 @@
             </div>
 
             {% if paciente.doc == 6127045 %}
-                <div class="col-11 col-sm-8">
+                <div class="col-11 col-sm-10">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
                                 <tr class="col-12">
                                     <th class="col-1"><h4>Nº</h4></th>
-                                    <th class="col-3"><h4>STATUS</h4></th>
+                                    <th class="col-2"><h4>STATUS</h4></th>
                                     <th class="col-2"><h4>DATA</h4></th>
-                                    <th class="col-2"><h4>HORÁRIO</h4></th>
-                                    <th class="col-2"><h4>APROVAÇÃO</h4></th>
-                                    <th class="col-2"><h4>PAGAMENTO</h4></th>
+                                    <th class="col-2"><h4>PACIENTE</h4></th>
+                                    <th class="col-1"><h4>HORÁRIO</h4></th>
+                                    <th class="col-1"><h4>APROVAÇÃO</h4></th>
+                                    <th class="col-3"><h4>PAGAMENTO</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in consultas: %}
                                     <tr class="col-12">
                                         <td class="col-1"><p>{{i.idConsulta}}</p></td>
-                                        <td class="col-3"><p>{{i.status}}</p></td>
+                                        <td class="col-2"><p>{{i.status}}</p></td>
                                         <td class="col-2"><p>{{i.data}}</p></td>
-                                        <td class="col-2"><p>{{i.horario}}</p></td>
+                                        {% for p in pacientes: %}
+                                            {% if p.idPaciente == i.paciente %}
+                                                <td class="col-2"><p>{{p.nome}}</p></td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="col-1"><p>{{i.horario}}</p></td>
                                         {% if i.status == "Aguardando aprovação" %}
-                                            <td class="col-2"><div class="buttons d-flex">
+                                            <td class="col-1"><div class="buttons d-flex">
                                                 <a href="/consultas/aprovar/{{i.idConsulta}}"><img src="{{url_for('static', filename='imgs/aprovar.png')}}" alt="Aprovar" class="img-fluid"></a>
                                                 <a href="/consultas/reprovar/{{i.idConsulta}}"><img src="{{url_for('static', filename='imgs/recusar.png')}}" alt="Reprovar" class="img-fluid"></a>
                                             </div></td>
                                         {% endif %}
                                         {% if i.status == "Agendada" %}
-                                            <td class="col-2"><div class="buttons d-flex"><span></span></td>
+                                            <td class="col-1"><div class="buttons d-flex"><span></span></td>
                                         {% endif %}
                                         {% if i.status == "Cancelada" %}
-                                            <td class="col-2"><div class="buttons d-flex"><span></span></td>
+                                            <td class="col-1"><div class="buttons d-flex"><span></span></td>
                                         {% endif %}
                                         {% if i.status == "Agendada" %}
                                             {% if i.idConsulta in pagamentos %}
-                                                <td class="col-2"><p>PAGAMENTO GERADO</p></td>
+                                                <td class="col-3"><p>PAGAMENTO GERADO</p></td>
                                             {% else %}
-                                                <td class="col-2"><p class="text-center"><a href="/gerar-pagamento/{{i.idConsulta}}">GERAR PAGAMENTO</a></p></td>
+                                                <td class="col-3"><p class="text-center"><a href="/gerar-pagamento/{{i.idConsulta}}">GERAR PAGAMENTO</a></p></td>
                                             {% endif %}
                                         {% endif %}
                                     </tr>

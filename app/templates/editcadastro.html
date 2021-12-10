@@ -36,12 +36,13 @@
                 {% if paciente.doc == 6127045 %}
                     <h3>PACIENTES ATIVOS</h3>
                 {% else %}
+                    {{ mensagem }}
                     <h3>EDITAR CADASTRO</h3>
                 {% endif %}
             </div>
 
             {% if paciente.doc == 6127045 %}
-                <div class="col-11 col-sm-10">
+                <div class="col-11">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
@@ -49,10 +50,10 @@
                                     <th class="col-2"><h4>NOME</h4></th>
                                     <th class="col-1"><h4>DOCUMENTO</h4></th>
                                     <th class="col-2"><h4>EMAIL</h4></th>
-                                    <th class="col-3"><h4>ENDEREÇO</h4></th>
+                                    <th class="col-2"><h4>ENDEREÇO</h4></th>
                                     <th class="col-2"><h4>TELEFONE</h4></th>
                                     <th class="col-1"><h4>CONVÊNIO</h4></th>
-                                    <th class="col-1"><h4>ARQUIVAR</h4></th>
+                                    <th class="col-2"><h4>ARQUIVAR</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,15 +64,15 @@
                                                 <td class="col-2"><p>{{i.nome}}</p></td>
                                                 <td class="col-1"><p>{{i.doc}}</p></td>
                                                 <td class="col-2"><p>{{i.email}}</p></td>
-                                                <td class="col-3"><p>{{i.endereco}}</p></td>
+                                                <td class="col-2"><p>{{i.endereco}}</p></td>
                                                 <td class="col-2"><p>{{i.telefone}}</p></td>
-                                                {% if i.tipoPlano == 1 %}
+                                                {% if i.convenio == 1 %}
                                                     <td class="col-1"><p>Sim</p></td>
                                                 {% endif %}
-                                                {% if i.tipoPlano == 0 %}
+                                                {% if i.convenio == 0 %}
                                                     <td class="col-1"><p>Não</p></td>
                                                 {% endif %}
-                                                <td class="col-1"><p><a href="/cadastro/arquivar/{{i.idPaciente}}">ARQUIVAR</a></p></td>
+                                                <td class="col-2"><p><a href="/cadastro/arquivar/{{i.idPaciente}}">ARQUIVAR</a></p></td>
                                             </tr>
                                         {% endif %}
                                     {% endif %}
@@ -89,7 +90,7 @@
             {% endif %}
 
             {% if paciente.doc == 6127045 %}
-                <div class="col-11 col-sm-10">
+                <div class="col-11">
                     <div class="row justify-content-center">
                         <table class="col-12" cellpadding="5px">
                             <thead class="col-12">
@@ -97,10 +98,10 @@
                                     <th class="col-2"><h4>NOME</h4></th>
                                     <th class="col-1"><h4>DOCUMENTO</h4></th>
                                     <th class="col-2"><h4>EMAIL</h4></th>
-                                    <th class="col-3"><h4>ENDEREÇO</h4></th>
+                                    <th class="col-2"><h4>ENDEREÇO</h4></th>
                                     <th class="col-2"><h4>TELEFONE</h4></th>
                                     <th class="col-1"><h4>CONVÊNIO</h4></th>
-                                    <th class="col-1"><h4>DESARQUIVAR</h4></th>
+                                    <th class="col-2"><h4>DESARQUIVAR</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,15 +111,15 @@
                                             <td class="col-2"><p>{{i.nome}}</p></td>
                                             <td class="col-1"><p>{{i.doc}}</p></td>
                                             <td class="col-2"><p>{{i.email}}</p></td>
-                                            <td class="col-3"><p>{{i.endereco}}</p></td>
+                                            <td class="col-2"><p>{{i.endereco}}</p></td>
                                             <td class="col-2"><p>{{i.telefone}}</p></td>
-                                            {% if i.tipoPlano == 1 %}
+                                            {% if i.convenio == 1 %}
                                                 <td class="col-1"><p>Sim</p></td>
                                             {% endif %}
-                                            {% if i.tipoPlano == 0 %}
+                                            {% if i.convenio == 0 %}
                                                 <td class="col-1"><p>Não</p></td>
                                             {% endif %}
-                                            <td class="col-1"><p><a href="/cadastro/desarquivar/{{i.idPaciente}}">DESARQUIVAR</a></p></td>
+                                            <td class="col-2"><p><a href="/cadastro/desarquivar/{{i.idPaciente}}">DESARQUIVAR</a></p></td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}

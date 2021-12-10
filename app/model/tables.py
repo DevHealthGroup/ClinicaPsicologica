@@ -1,5 +1,6 @@
 from app import app, db
 
+
 # CRIAÇÃO DA TABELA PACIENTE
 class Paciente(db.Model):
     __tablename__ = "paciente"
@@ -11,12 +12,12 @@ class Paciente(db.Model):
     endereco = db.Column(db.String(50))
     email = db.Column(db.String(30))
     telefone = db.Column(db.String(11))
-    tipoPlano = db.Column(db.Integer)
+    convenio = db.Column(db.Integer)
     senha = db.Column(db.String(20))
     arquivado = db.Column(db.Integer)
 
     # CONSTRUTOR DA TABELA PACIENTE
-    def __init__(self, nome, doc, sexo, dtNasc, endereco, telefone, email, tipoPlano, senha):
+    def __init__(self, nome, doc, sexo, dtNasc, endereco, telefone, email, convenio, senha):
         self.doc = doc
         self.nome = nome
         self.sexo = sexo
@@ -24,7 +25,7 @@ class Paciente(db.Model):
         self.endereco = endereco
         self.telefone = telefone
         self.email = email
-        self.tipoPlano = tipoPlano
+        self.convenio = convenio
         self.senha = senha
         self.arquivado = 0
 
@@ -52,14 +53,14 @@ class Pagamento(db.Model):
     idPagamento = db.Column(db.Integer, autoincrement=True, primary_key=True)
     consulta = db.Column(db.Integer)
     paciente = db.Column(db.Integer)
-    valor = db.Column(db.Float)
+    valor = db.Column(db.String(30))
     status = db.Column(db.String(30))
-    tipoPlano = db.Column(db.Integer)
+    convenio = db.Column(db.Integer)
 
     # CONSTRUTOR DA TABELA PAGAMENTO
-    def __init__(self, paciente, consulta, valor, tipoPlano):
+    def __init__(self, paciente, consulta, valor, convenio):
         self.paciente = paciente
         self.consulta = consulta
         self.valor = valor
         self.status = 'Pendente'
-        self.tipoPlano = tipoPlano
+        self.convenio = convenio

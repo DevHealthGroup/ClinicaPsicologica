@@ -123,3 +123,7 @@ td p {
 .erro {
     color: red;
 }
+
+tr.arquivado {
+    opacity: 75%;
+}
